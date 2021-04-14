@@ -1,0 +1,42 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Getting Started: Serving Web Content</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/css/othello/index.css}" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<script th:inline="javascript">
+		function func(id){
+			console.log(document.forms[`form${id}`])
+			console.log(document.forms)
+			document.forms[`form${id}`].submit()
+		}
+	</script>
+</head>
+
+<body>
+	<div class="container">
+		<div class="leftArea">
+			<h2 th:text="|黒 ${blackCount}|"></h2>
+			<h2 th:text="|白 ${whiteCount}|"></h2>
+			<div class="grow"></div>
+			<h1 th:text="(${isBlack} ? '黒' : '白') + の番"></h1>
+			<form action="#" th:action="@{/othello/reset}" method="post">
+				<input type="submit" class="resetButton" value="リセット" />
+			</form>
+		</div>
+		<div class="board">
+			<div class="square" th:each="square : ${squares}" th:object="${square}">
+				<form action="#" class="touch" th:action="@{/othello/{squareId}(squareId=${square.id})}" th:id="'form' + ${square.id}" method="post">
+					<div class="touch" th:onclick="|func(${square.id})|" th:if="${square.isTurn}">
+						<div class="turnPoint"></div>
+					</div>
+					<div class="piece" th:if="${square.isPlaced}" th:classappend="${square.isBlack} ? 'isBlack'"></div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

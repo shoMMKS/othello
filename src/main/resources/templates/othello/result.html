@@ -1,0 +1,25 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+	<title>Getting Started: Serving Web Content</title>
+	<link th:href="@{/css/main.css}" rel="stylesheet">
+	<link th:href="@{/css/othello/result.css}" rel="stylesheet">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+	<div class="container">
+		<div class="main">
+			<h2 th:text="|黒 ${blackCount} - ${whiteCount} 白|"></h2>
+			<div class="grow"></div>
+			<h1 th:text="(${blackCount &gt; whiteCount} ? '黒' : '白') + の勝利"></h1>
+			<form action="#" th:action="@{/othello/reset}" method="post">
+				<input type="submit" class="resetButton" value="もう一回" />
+			</form>
+		</div>
+	</div>
+</body>
+
+</html>

@@ -1,0 +1,14 @@
+.main {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.resetButton {
+  background-color: lightgreen;
+  padding: 10px 20px;
+  border: 2px solid #222;
+  border-radius: 20px;
+  font-size: 2em;
+  font-weight: bold;
+}
